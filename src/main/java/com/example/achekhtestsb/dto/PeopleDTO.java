@@ -3,16 +3,20 @@ package com.example.achekhtestsb.dto;
 import com.example.achekhtestsb.entity.People;
 import com.example.achekhtestsb.entity.RockGroups;
 import com.example.achekhtestsb.entity.SongPlayers;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@EnableTransactionManagement
 public class PeopleDTO {
     private long id;
     private String human;
     private RockGroups rockGroups;
     private List<SongPlayersDTO> songPlayersList;
 
+    @Transactional
     public List<PeopleDTO> getPeopleDTOList(List<People> peopleList){
         List<PeopleDTO> peopleDTOList = new ArrayList<>();
 

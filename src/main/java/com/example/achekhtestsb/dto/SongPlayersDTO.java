@@ -2,10 +2,13 @@ package com.example.achekhtestsb.dto;
 
 import com.example.achekhtestsb.entity.People;
 import com.example.achekhtestsb.entity.SongPlayers;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@EnableTransactionManagement
 public class SongPlayersDTO {
     private long id;
     private String song;
@@ -14,6 +17,7 @@ public class SongPlayersDTO {
     private String album;
     private List<PeopleDTO> songInstrumentalistList;
 
+    @Transactional
     public List<SongPlayersDTO> getSongPlayersDTOList (List<SongPlayers> songPlayersList){
         List<SongPlayersDTO> songPlayersDTOList = new ArrayList<>();
 

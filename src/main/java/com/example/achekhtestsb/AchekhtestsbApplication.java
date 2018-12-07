@@ -16,11 +16,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@EnableTransactionManagement
 @SpringBootApplication
 public class AchekhtestsbApplication implements CommandLineRunner {
     People people;
@@ -69,7 +72,7 @@ public class AchekhtestsbApplication implements CommandLineRunner {
             logger.info("Insert songPlayers -> {}", songPlayersRepository.save(songPlayers));
         }
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 10; i++) {
             album = new Album("Album" + i);
             albumList.add(album);
             logger.info("Insert album -> {}", albumRepository.save(album));
@@ -90,14 +93,23 @@ public class AchekhtestsbApplication implements CommandLineRunner {
         for (int i = 0; i < 30; i++) {
             updSongPlayers(i);
         }
-        for (int i = 0; i < 3; i++) {
+        for(int i = 0; i < 100; i++) {
+            PeopleGetSongItems(i);
+        }
+        for (int i = 0; i < 6; i++) {
             updAlbum(i);
         }
        /* updAlbum(4);
         updAlbum(5);*/
+//       PeopleGetSongItems(1);
     }
 
-    private void updAlbum(int albI) {
+    private void PeopleGetSongItems(int i) {
+        logger.info("PeopleRepositoryFindAll " + i +" -> {}",peopleRepository.findAll());
+    }
+
+    @Transactional
+    public void updAlbum(int albI) {
         final String ROOT = "http://localhost:8080/album/upd/{id}";
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
