@@ -96,7 +96,7 @@ public class AchekhtestsbApplication implements CommandLineRunner {
         for(int i = 0; i < 100; i++) {
             PeopleGetSongItems(i);
         }
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 3; i++) {
             updAlbum(i);
         }
        /* updAlbum(4);
